@@ -12,8 +12,8 @@
   ],
   "rewrites": [
     {
-      "src": "/:path*",
-      "dest": "/app/layout.tsx/:path*"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
