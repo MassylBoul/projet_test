@@ -10,13 +10,26 @@
       "use": "@vercel/next"
     }
   ],
-  "hooks": {
-    "build": "npx prisma generate && next build"
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.js"
-    }
-  ]
+  "env": {
+    "DATABASE_URL": "@DATABASE_URL",
+    "DATABASE_URL_UNPOOLED": "@DATABASE_URL_UNPOOLED",
+    "PGHOST": "@PGHOST",
+    "PGUSER": "@PGUSER",
+    "PGDATABASE": "@PGDATABASE",
+    "PGPASSWORD": "@PGPASSWORD",
+    "POSTGRES_URL": "@POSTGRES_URL",
+    "POSTGRES_URL_NON_POOLING": "@POSTGRES_URL_NON_POOLING",
+    "POSTGRES_USER": "@POSTGRES_USER",
+    "POSTGRES_HOST": "@POSTGRES_HOST",
+    "POSTGRES_PASSWORD": "@POSTGRES_PASSWORD",
+    "POSTGRES_DATABASE": "@POSTGRES_DATABASE",
+    "POSTGRES_URL_NO_SSL": "@POSTGRES_URL_NO_SSL",
+    "POSTGRES_PRISMA_URL": "@POSTGRES_PRISMA_URL",
+    "NEXTAUTH_URL": "@NEXTAUTH_URL",
+    "NEXTAUTH_SECRET": "@NEXTAUTH_SECRET",
+    "GITHUB_ID": "@GITHUB_ID",
+    "GITHUB_SECRET": "@GITHUB_SECRET",
+    "GOOGLE_ID": "@GOOGLE_ID",
+    "GOOGLE_SECRET": "@GOOGLE_SECRET"
+  }
 }
