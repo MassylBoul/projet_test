@@ -10,9 +10,6 @@
       "use": "@vercel/next"
     }
   ],
-  "env": {
-    "DATABASE_URL": "@DATABASE_URL"
-  },
   "hooks": {
     "build": "npx prisma generate && next build"
   },
