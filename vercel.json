@@ -10,10 +10,10 @@
       "use": "@vercel/next"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/app/layout.tsx"
+      "src": "/:path*",
+      "dest": "/app/layout.tsx/:path*"
     }
   ]
 }
