@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "app/**/*",
       "use": "@vercel/node"
     },
     {
@@ -10,10 +10,18 @@
       "use": "@vercel/next"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/app/layout.tsx"
+      "src": "/",
+      "dest": "/app/layout.tsx"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/app/$1"
+    },
+    {
+      "src": "/404",
+      "dest": "/app/404.tsx"
     }
   ]
 }
