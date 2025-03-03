@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/app/layout.tsx"
+      "dest": "/layout.tsx"
     },
     {
       "src": "/(.*)",
