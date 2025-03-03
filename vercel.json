@@ -14,14 +14,6 @@
     {
       "src": "/",
       "dest": "/layout.tsx"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/app/$1"
-    },
-    {
-      "src": "/404",
-      "dest": "/app/404.tsx"
     }
   ]
 }
