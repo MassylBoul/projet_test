@@ -30,7 +30,7 @@ export default function FormAddRestaurant({ onAdd }: FormAddRestaurantProps) {
   }) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/Restaurant",
+        "https://projettest-datatable.vercel.app/api/Restaurant",
         data
       );
       if (response.data.status == 200) {

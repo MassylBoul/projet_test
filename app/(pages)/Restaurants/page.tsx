@@ -30,7 +30,9 @@ export default function AfficherRestaurant() {
 
   async function getRestaurants() {
     try {
-      const response = await axios.get("http://localhost:3000/api/Restaurant");
+      const response = await axios.get(
+        "https://projettest-datatable.vercel.app/api/Restaurant"
+      );
 
       if (response.status == 200) {
         setRestaurants(response.data);
@@ -43,7 +45,7 @@ export default function AfficherRestaurant() {
   async function getRestaurant(data: { id: number }) {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/Restaurant?id=" + data.id
+        "https://projettest-datatable.vercel.app/api/Restaurant?id=" + data.id
       );
       if (response.status == 200) {
         setRestaurants([response.data]);

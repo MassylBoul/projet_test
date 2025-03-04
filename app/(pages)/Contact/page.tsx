@@ -5,9 +5,11 @@ import axios from "axios";
 
 async function getRestaurant() {
   // let resto;
-  axios.get("http://localhost:3000/api/Restaurant?id=1").then((response) => {
-    console.log(response.data);
-  });
+  axios
+    .get("https://projettest-datatable.vercel.app/api/Restaurant?id=1")
+    .then((response) => {
+      console.log(response.data);
+    });
 }
 const Contact = () => {
   return (
