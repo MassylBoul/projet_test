@@ -27,6 +27,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  "use client";
   const session = await getServerSession();
   return (
     <html lang="en" className="h-full">
