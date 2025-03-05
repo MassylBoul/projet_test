@@ -1,10 +1,26 @@
-import NextAuth from "next-auth";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { JWT } from "next-auth/jwt";
 import axios from "axios";
 
-export const authOptions = {
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      role: string;
+    } & DefaultSession["user"];
+  }
+
+  interface JWT {
+    id: string;
+    role: string;
+  }
+}
+
+export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
@@ -24,6 +40,7 @@ export const authOptions = {
         },
         password: { label: "Password", type: "password" },
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, req) {
         try {
           const res = await axios.post(
@@ -49,14 +66,14 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
         token.id = user.id; // Stocke l'ID de l'utilisateur
         token.role = user.role; // Exemple : Ajouter un rôle
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: JWT }) {
       session.user.id = token.id; // Ajoute un ID utilisateur à la session
       session.user.role = token.role; // Ajoute un rôle (admin, user, etc.)
       return session;
