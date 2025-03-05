@@ -1,7 +1,13 @@
 "use client";
+import { useSession } from "next-auth/react";
 
-const About = () => {
-  return <div>About</div>;
-};
+export default function About() {
+  const { data: session } = useSession();
+  console.log(session);
 
-export default About;
+  return (
+    <div>
+      {session?.user ? <p>{session?.user.id}</p> : <p>not logged in</p>}
+    </div>
+  );
+}

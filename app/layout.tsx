@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import React from "react";
 
 import NavBar from "./components/Nav/NavBar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/AuthButton/SessionProvider";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +27,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  "use client";
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en" className="h-full">
       <body

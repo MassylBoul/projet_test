@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
-import { useState /*, useMemo */ } from "react";
+import { useEffect, useState /*, useMemo */ } from "react";
 // import { useTable } from "react-table";
 import FormAddRestaurant from "@/app/components/FormAddRestaurant/FormAddRestaurant";
 import {
@@ -21,12 +21,14 @@ import {
   columns,
 } from "@/app/components/DataTableEx/DataTableEx";
 import { Restaurant } from "@/app/Types/Type";
+import { useSession } from "next-auth/react";
 
 export default function AfficherRestaurant() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>(
     [] as Restaurant[]
   );
   const [errorStyle, setErrorStyle] = useState("hidden");
+  const { data: session, update } = useSession();
 
   async function getRestaurants() {
     try {
@@ -112,9 +114,11 @@ export default function AfficherRestaurant() {
             </form>
           </Form>
         </div>
-        <div className="border-2 border-gray-300 p-10 bg-gray-200 rounded-sm">
-          <FormAddRestaurant onAdd={getRestaurants} />
-        </div>
+        {session?.user?.role == "ADMIN" ? (
+          <div className="border-2 border-gray-300 p-10 bg-gray-200 rounded-sm">
+            <FormAddRestaurant onAdd={getRestaurants} />
+          </div>
+        ) : null}
       </div>
       <div className="border p-10 m-7 h-full grow rounded-sm flex items-baseline justify-center">
         <DataTableDemo columns={columns} data={restaurants} />

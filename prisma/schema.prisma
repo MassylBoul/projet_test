@@ -6,11 +6,21 @@
 
 generator client {
   provider = "prisma-client-js"
+  rejectUnauthorized=false
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int             @id @default(autoincrement())
+  email           String          @unique
+  name            String
+  password        String?
+  role    Role     @default(USER)
+  
 }
 
 model Restaurant {
@@ -51,3 +61,7 @@ model Reservation{
   @@unique([date, numTab, restaurantId])
 }
 
+enum Role {
+  USER
+  ADMIN
+}
