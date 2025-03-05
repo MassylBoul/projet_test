@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
-import { useEffect, useState /*, useMemo */ } from "react";
+import { useState /*, useMemo */ } from "react";
 // import { useTable } from "react-table";
 import FormAddRestaurant from "@/app/components/FormAddRestaurant/FormAddRestaurant";
 import {
@@ -28,7 +28,7 @@ export default function AfficherRestaurant() {
     [] as Restaurant[]
   );
   const [errorStyle, setErrorStyle] = useState("hidden");
-  const { data: session, update } = useSession();
+  const { data: session } = useSession();
 
   async function getRestaurants() {
     try {
