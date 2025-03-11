@@ -68,6 +68,21 @@ export const AuthOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
+        try {
+          if (!user?.role) {
+            const { data } = await axios.post(
+              "http://localhost:3000/api/ProviderLogin",
+              {
+                user,
+              }
+            );
+
+            user = data;
+          }
+        } catch (error) {
+          console.log(error);
+          return token;
+        }
         token.id = user.id; // Stocke l'ID de l'utilisateur
         token.role = user.role; // Exemple : Ajouter un rôle
       }
