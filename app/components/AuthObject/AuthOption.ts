@@ -50,9 +50,7 @@ export const AuthOptions: NextAuthOptions = {
               password: credentials?.password,
             }
           );
-
           const user = res.data;
-
           if (user) {
             return user;
           } else {
@@ -71,7 +69,7 @@ export const AuthOptions: NextAuthOptions = {
         try {
           if (!user?.role) {
             const { data } = await axios.post(
-              "http://localhost:3000/api/ProviderLogin",
+              "https://projettest-datatable.vercel.app/api/ProviderLogin",
               {
                 user,
               }
